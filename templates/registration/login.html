@@ -1,4 +1,28 @@
-<!--
-    registration/login.html - форма входа.
-    Будет заполнена на этапе "Аутентификация".
--->
+{% extends "base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <h1 class="mb-4">Вход в TaskFlow</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            Неверный логин или пароль. Попробуйте ещё раз.
+          </div>
+        {% endif %}
+        <div class="mb-3">
+          <label class="form-label">{{ form.username.label }}</label>
+          {{ form.username }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{ form.password.label }}</label>
+          {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
