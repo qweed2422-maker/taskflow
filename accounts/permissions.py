@@ -1,12 +1,47 @@
 """
 Миксины и хелперы для проверки ролей (Руководитель / Сотрудник).
 
-Будут реализованы на этапе "Группы и права доступа".
-Ключевой принцип (см. ARCHITECTURE.md, раздел 5):
-любой view, отдающий конкретный объект, обязан дополнительно
-ограничивать queryset по правам пользователя, а не только проверять роль
-на уровне доступа к view.
+Ключевой принцип (см. ARCHITECTURE.md, раздел 5): эти инструменты
+проверяют ТОЛЬКО доступ к самому view. Они не заменяют фильтрацию
+queryset внутри view — фильтрация обязательна на каждом view, который
+отдаёт конкретный объект по pk, иначе сотрудник сможет получить чужую
+задачу простой подменой ID в URL.
 """
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-# TODO: ManagerRequiredMixin
-# TODO: EmployeeOwnObjectMixin (фильтрация queryset по author/assignee)
+MANAGERS_GROUP = "Managers"
+EMPLOYEES_GROUP = "Employees"
+
+
+def is_manager(user) -> bool:
+    """Руководитель: суперпользователь либо состоит в группе Managers."""
+    if not user.is_authenticated:
+        return False
+    return user.is_superuser or user.groups.filter(name=MANAGERS_GROUP).exists()
+
+
+def is_employee(user) -> bool:
+    """Сотрудник: аутентифицирован и не является руководителем."""
+    return user.is_authenticated and not is_manager(user)
+
+
+class ManagerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """
+    Доступ к view только для Руководителя.
+    Сотруднику, попытавшемуся открыть такой view, возвращается 403 Forbidden
+    (а не редирект на логин, так как пользователь уже аутентифицирован).
+    """
+
+    raise_exception = True
+
+    def test_func(self):
+        return is_manager(self.request.user)
+
+
+class EmployeeOrManagerMixin(LoginRequiredMixin):
+    """
+    Базовый миксин для view, доступных обеим ролям при условии входа
+    в систему. Ограничение "видит только свои задачи" реализуется
+    в get_queryset() конкретного view (этап 8), а не здесь.
+    """
+    pass
