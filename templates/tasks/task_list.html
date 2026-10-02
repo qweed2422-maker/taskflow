@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Задачи</h1>
+    <a href="{% url 'tasks:create' %}" class="btn btn-primary">+ Новая задача</a>
+  </div>
+
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+      <input
+          type="text"
+          name="q"
+          class="form-control"
+          placeholder="Поиск по названию"
+          value="{{ current_q }}">
+    </div>
+    <div class="col-md-2">
+      <select name="status" class="form-select">
+        <option value="">Все статусы</option>
+        {% for value, label in status_choices %}
+          <option value="{{ value }}" {% if current_status == value %}selected{% endif %}>
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="assignee" class="form-select">
+        <option value="">Все исполнители</option>
+        {% for a in assignees %}
+          <option value="{{ a.id }}" {% if current_assignee == a.id|stringformat:"s" %}selected{% endif %}>
+            {{ a.username }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="project" class="form-select">
+        <option value="">Все проекты</option>
+        {% for p in projects %}
+          <option value="{{ p.id }}" {% if current_project == p.id|stringformat:"s" %}selected{% endif %}>
+            {{ p.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-outline-primary w-100">Применить</button>
+    </div>
+  </form>
+
+  {% if current_q or current_status or current_assignee or current_project %}
+    <p>
+      <a href="{% url 'tasks:list' %}" class="btn btn-sm btn-link ps-0">Сбросить фильтры</a>
+    </p>
+  {% endif %}
+
+  {% if tasks %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Проект</th>
+            <th>Статус</th>
+            <th>Приоритет</th>
+            <th>Автор</th>
+            <th>Исполнитель</th>
+            <th>Дедлайн</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+            <tr>
+              <td><a href="{% url 'tasks:detail' task.pk %}">{{ task.title }}</a></td>
+              <td>{{ task.project.title }}</td>
+              <td>{{ task.get_status_display }}</td>
+              <td>{{ task.get_priority_display }}</td>
+              <td>{{ task.author.username }}</td>
+              <td>{{ task.assignee.username|default:"—" }}</td>
+              <td>{{ task.deadline|default:"—" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% include "includes/pagination.html" %}
+  {% else %}
+    <p class="text-muted">Ничего не найдено по заданным условиям.</p>
+  {% endif %}
+{% endblock %}

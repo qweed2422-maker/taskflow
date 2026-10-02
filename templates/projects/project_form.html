@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if object %}Редактировать проект{% else %}Новый проект{% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">
+    {% if object %}Редактировать проект{% else %}Новый проект{% endif %}
+  </h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">{{ form.title.label }}</label>
+      {{ form.title }}
+      {{ form.title.errors }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ form.description.label }}</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'projects:list' %}" class="btn btn-link">Отмена</a>
+  </form>
+{% endblock %}

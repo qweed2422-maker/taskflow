@@ -1,0 +1,27 @@
+{% if is_paginated %}
+  <nav class="mt-4">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link"
+             href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">
+            &laquo;
+          </a>
+        </li>
+      {% endif %}
+      <li class="page-item disabled">
+        <span class="page-link">
+          Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+      </li>
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link"
+             href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">
+            &raquo;
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
