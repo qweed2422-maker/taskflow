@@ -18,10 +18,7 @@ from .forms import ManagerTaskForm, EmployeeCreateTaskForm, EmployeeEditTaskForm
 
 class VisibleTasksMixin:
     """
-    Ограничивает queryset по правам пользователя.
-
-    Руководитель видит и может открыть/отредактировать любую задачу.
-    Сотрудник — только те, где он автор или исполнитель.
+    Ограничивает queryset по правам пользователя — см. Task.objects.visible_to().
 
     Это единая точка защиты от доступа к чужой задаче через подмену id
     в URL: если задача не входит в этот queryset, Django на любом view
@@ -29,11 +26,7 @@ class VisibleTasksMixin:
     """
 
     def get_base_queryset(self):
-        qs = Task.objects.select_related("project", "author", "assignee")
-        user = self.request.user
-        if is_manager(user):
-            return qs
-        return qs.filter(Q(author=user) | Q(assignee=user))
+        return Task.objects.select_related("project", "author", "assignee").visible_to(self.request.user)
 
 
 class TaskListView(LoginRequiredMixin, VisibleTasksMixin, ListView):

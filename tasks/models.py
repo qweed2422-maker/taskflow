@@ -3,6 +3,19 @@ from django.db import models
 
 from projects.models import Project
 
+class TaskQuerySet(models.QuerySet):
+    def visible_to(self, user):
+        """
+        Задачи, видимые пользователю по правам доступа.
+        Руководитель видит все задачи, сотрудник — только те,
+        где он автор или исполнитель. Используется и в CRUD задач,
+        и в дашборде, чтобы логика видимости не дублировалась.
+        """
+        from accounts.permissions import is_manager  # локальный импорт — без циклической зависимости
+
+        if is_manager(user):
+            return self
+        return self.filter(models.Q(author=user) | models.Q(assignee=user))
 
 class Task(models.Model):
     class Status(models.TextChoices):
@@ -30,6 +43,8 @@ class Task(models.Model):
         choices=Priority.choices,
         default=Priority.MEDIUM,
     )
+
+    objects = TaskQuerySet.as_manager()
 
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
