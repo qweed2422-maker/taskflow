@@ -117,364 +117,364 @@
 },
 {
   "model": "projects.project",
-  "pk": 3,
+  "pk": 7,
   "fields": {
-    "title": "Редизайн корпоративного сайта",
-    "description": "Обновление дизайна и вёрстки основного сайта компании."
+    "title": "Р РµРґРёР·Р°Р№РЅ РєРѕСЂРїРѕСЂР°С‚РёРІРЅРѕРіРѕ СЃР°Р№С‚Р°",
+    "description": "РћР±РЅРѕРІР»РµРЅРёРµ РґРёР·Р°Р№РЅР° Рё РІС‘СЂСЃС‚РєРё РѕСЃРЅРѕРІРЅРѕРіРѕ СЃР°Р№С‚Р° РєРѕРјРїР°РЅРёРё."
   }
 },
 {
   "model": "projects.project",
-  "pk": 4,
+  "pk": 8,
   "fields": {
-    "title": "Внутренняя CRM-система",
-    "description": "Разработка системы учёта клиентов для отдела продаж."
+    "title": "Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ CRM-СЃРёСЃС‚РµРјР°",
+    "description": "Р Р°Р·СЂР°Р±РѕС‚РєР° СЃРёСЃС‚РµРјС‹ СѓС‡С‘С‚Р° РєР»РёРµРЅС‚РѕРІ РґР»СЏ РѕС‚РґРµР»Р° РїСЂРѕРґР°Р¶."
   }
 },
 {
   "model": "projects.project",
-  "pk": 5,
+  "pk": 9,
   "fields": {
-    "title": "Мобильное приложение поддержки",
-    "description": "Приложение для обращений клиентов в техподдержку."
+    "title": "РњРѕР±РёР»СЊРЅРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕРґРґРµСЂР¶РєРё",
+    "description": "РџСЂРёР»РѕР¶РµРЅРёРµ РґР»СЏ РѕР±СЂР°С‰РµРЅРёР№ РєР»РёРµРЅС‚РѕРІ РІ С‚РµС…РїРѕРґРґРµСЂР¶РєСѓ."
   }
 },
 {
   "model": "projects.project",
-  "pk": 6,
+  "pk": 10,
   "fields": {
-    "title": "Автоматизация тестирования",
-    "description": "Покрытие ключевых пользовательских сценариев автотестами."
+    "title": "РђРІС‚РѕРјР°С‚РёР·Р°С†РёСЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ",
+    "description": "РџРѕРєСЂС‹С‚РёРµ РєР»СЋС‡РµРІС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… СЃС†РµРЅР°СЂРёРµРІ Р°РІС‚РѕС‚РµСЃС‚Р°РјРё."
   }
 },
 {
   "model": "tasks.task",
-  "pk": 6,
+  "pk": 20,
   "fields": {
-    "title": "Сделать макет главной страницы",
-    "description": "Подготовить макет в Figma.",
+    "title": "РЎРґРµР»Р°С‚СЊ РјР°РєРµС‚ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹",
+    "description": "РџРѕРґРіРѕС‚РѕРІРёС‚СЊ РјР°РєРµС‚ РІ Figma.",
     "status": "done",
     "priority": "medium",
     "author": 3,
     "assignee": 2,
-    "project": 3,
-    "deadline": "2026-09-22",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 7,
-  "fields": {
-    "title": "Вёрстка адаптивных блоков",
-    "description": "Адаптировать вёрстку под мобильные экраны.",
-    "status": "in_progress",
-    "priority": "high",
-    "author": 2,
-    "assignee": 2,
-    "project": 3,
-    "deadline": "2026-10-07",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 8,
-  "fields": {
-    "title": "Подключить аналитику",
-    "description": "Настроить сбор метрик посещаемости.",
-    "status": "new",
-    "priority": "low",
-    "author": 3,
-    "assignee": 4,
-    "project": 3,
-    "deadline": "2026-10-16",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 9,
-  "fields": {
-    "title": "Спроектировать схему БД CRM",
-    "description": "Продумать таблицы и связи.",
-    "status": "done",
-    "priority": "high",
-    "author": 3,
-    "assignee": 4,
-    "project": 4,
-    "deadline": "2026-09-12",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 10,
-  "fields": {
-    "title": "Реализовать карточку клиента",
-    "description": "Форма просмотра и редактирования клиента.",
-    "status": "in_progress",
-    "priority": "high",
-    "author": 4,
-    "assignee": 4,
-    "project": 4,
+    "project": 7,
     "deadline": "2026-09-30",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 11,
+  "pk": 21,
   "fields": {
-    "title": "Добавить фильтры в список клиентов",
-    "description": "Фильтрация по статусу и менеджеру.",
-    "status": "new",
-    "priority": "medium",
-    "author": 3,
-    "assignee": 5,
-    "project": 4,
-    "deadline": "2026-10-09",
+    "title": "Р’С‘СЂСЃС‚РєР° Р°РґР°РїС‚РёРІРЅС‹С… Р±Р»РѕРєРѕРІ",
+    "description": "РђРґР°РїС‚РёСЂРѕРІР°С‚СЊ РІС‘СЂСЃС‚РєСѓ РїРѕРґ РјРѕР±РёР»СЊРЅС‹Рµ СЌРєСЂР°РЅС‹.",
+    "status": "in_progress",
+    "priority": "high",
+    "author": 2,
+    "assignee": 2,
+    "project": 7,
+    "deadline": "2026-10-15",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 12,
+  "pk": 22,
   "fields": {
-    "title": "Настроить права доступа в CRM",
-    "description": "Роли: менеджер, администратор.",
+    "title": "РџРѕРґРєР»СЋС‡РёС‚СЊ Р°РЅР°Р»РёС‚РёРєСѓ",
+    "description": "РќР°СЃС‚СЂРѕРёС‚СЊ СЃР±РѕСЂ РјРµС‚СЂРёРє РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё.",
+    "status": "new",
+    "priority": "low",
+    "author": 3,
+    "assignee": 4,
+    "project": 7,
+    "deadline": "2026-10-24",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 23,
+  "fields": {
+    "title": "РЎРїСЂРѕРµРєС‚РёСЂРѕРІР°С‚СЊ СЃС…РµРјСѓ Р‘Р” CRM",
+    "description": "РџСЂРѕРґСѓРјР°С‚СЊ С‚Р°Р±Р»РёС†С‹ Рё СЃРІСЏР·Рё.",
+    "status": "done",
+    "priority": "high",
+    "author": 3,
+    "assignee": 4,
+    "project": 8,
+    "deadline": "2026-09-20",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 24,
+  "fields": {
+    "title": "Р РµР°Р»РёР·РѕРІР°С‚СЊ РєР°СЂС‚РѕС‡РєСѓ РєР»РёРµРЅС‚Р°",
+    "description": "Р¤РѕСЂРјР° РїСЂРѕСЃРјРѕС‚СЂР° Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РєР»РёРµРЅС‚Р°.",
+    "status": "in_progress",
+    "priority": "high",
+    "author": 4,
+    "assignee": 4,
+    "project": 8,
+    "deadline": "2026-10-08",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 25,
+  "fields": {
+    "title": "Р”РѕР±Р°РІРёС‚СЊ С„РёР»СЊС‚СЂС‹ РІ СЃРїРёСЃРѕРє РєР»РёРµРЅС‚РѕРІ",
+    "description": "Р¤РёР»СЊС‚СЂР°С†РёСЏ РїРѕ СЃС‚Р°С‚СѓСЃСѓ Рё РјРµРЅРµРґР¶РµСЂСѓ.",
+    "status": "new",
+    "priority": "medium",
+    "author": 3,
+    "assignee": 5,
+    "project": 8,
+    "deadline": "2026-10-17",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 26,
+  "fields": {
+    "title": "РќР°СЃС‚СЂРѕРёС‚СЊ РїСЂР°РІР° РґРѕСЃС‚СѓРїР° РІ CRM",
+    "description": "Р РѕР»Рё: РјРµРЅРµРґР¶РµСЂ, Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ.",
     "status": "new",
     "priority": "high",
     "author": 3,
     "assignee": null,
-    "project": 4,
+    "project": 8,
+    "deadline": "2026-10-13",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 27,
+  "fields": {
+    "title": "РџСЂРѕС‚РѕС‚РёРї СЌРєСЂР°РЅР° РѕР±СЂР°С‰РµРЅРёР№",
+    "description": "Р­РєСЂР°РЅ СЃРїРёСЃРєР° Рё РґРµС‚Р°Р»РµР№ РѕР±СЂР°С‰РµРЅРёСЏ.",
+    "status": "in_progress",
+    "priority": "medium",
+    "author": 5,
+    "assignee": 5,
+    "project": 9,
+    "deadline": "2026-10-20",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 28,
+  "fields": {
+    "title": "Push-СѓРІРµРґРѕРјР»РµРЅРёСЏ",
+    "description": "РќР°СЃС‚СЂРѕРёС‚СЊ push РїСЂРё СЃРјРµРЅРµ СЃС‚Р°С‚СѓСЃР° РѕР±СЂР°С‰РµРЅРёСЏ.",
+    "status": "new",
+    "priority": "low",
+    "author": 3,
+    "assignee": 6,
+    "project": 9,
     "deadline": "2026-10-05",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 13,
+  "pk": 29,
   "fields": {
-    "title": "Прототип экрана обращений",
-    "description": "Экран списка и деталей обращения.",
-    "status": "in_progress",
+    "title": "РРЅС‚РµРіСЂР°С†РёСЏ СЃ API РїРѕРґРґРµСЂР¶РєРё",
+    "description": "РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє РІРЅРµС€РЅРµРјСѓ СЃРµСЂРІРёСЃСѓ С‚РёРєРµС‚РѕРІ.",
+    "status": "done",
     "priority": "medium",
-    "author": 5,
-    "assignee": 5,
-    "project": 5,
+    "author": 6,
+    "assignee": 6,
+    "project": 9,
+    "deadline": "2026-09-25",
+    "attachment": ""
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 30,
+  "fields": {
+    "title": "РќР°РїРёСЃР°С‚СЊ Р°РІС‚РѕС‚РµСЃС‚С‹ РґР»СЏ РІС…РѕРґР°",
+    "description": "РџРѕРєСЂС‹С‚СЊ СЃС†РµРЅР°СЂРёРё Р»РѕРіРёРЅР°/Р»РѕРіР°СѓС‚Р°.",
+    "status": "in_progress",
+    "priority": "high",
+    "author": 3,
+    "assignee": 2,
+    "project": 10,
     "deadline": "2026-10-12",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 14,
+  "pk": 31,
   "fields": {
-    "title": "Push-уведомления",
-    "description": "Настроить push при смене статуса обращения.",
-    "status": "new",
-    "priority": "low",
-    "author": 3,
-    "assignee": 6,
-    "project": 5,
-    "deadline": "2026-09-27",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 15,
-  "fields": {
-    "title": "Интеграция с API поддержки",
-    "description": "Подключение к внешнему сервису тикетов.",
-    "status": "done",
-    "priority": "medium",
-    "author": 6,
-    "assignee": 6,
-    "project": 5,
-    "deadline": "2026-09-17",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 16,
-  "fields": {
-    "title": "Написать автотесты для входа",
-    "description": "Покрыть сценарии логина/логаута.",
-    "status": "in_progress",
-    "priority": "high",
-    "author": 3,
-    "assignee": 2,
-    "project": 6,
-    "deadline": "2026-10-04",
-    "attachment": ""
-  }
-},
-{
-  "model": "tasks.task",
-  "pk": 17,
-  "fields": {
-    "title": "Настроить CI для прогона тестов",
-    "description": "GitHub Actions на каждый push.",
+    "title": "РќР°СЃС‚СЂРѕРёС‚СЊ CI РґР»СЏ РїСЂРѕРіРѕРЅР° С‚РµСЃС‚РѕРІ",
+    "description": "GitHub Actions РЅР° РєР°Р¶РґС‹Р№ push.",
     "status": "new",
     "priority": "medium",
     "author": 3,
     "assignee": 6,
-    "project": 6,
-    "deadline": "2026-10-22",
+    "project": 10,
+    "deadline": "2026-10-30",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 18,
+  "pk": 32,
   "fields": {
-    "title": "Покрыть тестами CRUD задач",
-    "description": "Тесты на создание/редактирование/удаление.",
+    "title": "РџРѕРєСЂС‹С‚СЊ С‚РµСЃС‚Р°РјРё CRUD Р·Р°РґР°С‡",
+    "description": "РўРµСЃС‚С‹ РЅР° СЃРѕР·РґР°РЅРёРµ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ/СѓРґР°Р»РµРЅРёРµ.",
     "status": "new",
     "priority": "high",
     "author": 2,
     "assignee": 2,
-    "project": 6,
-    "deadline": "2026-10-01",
+    "project": 10,
+    "deadline": "2026-10-09",
     "attachment": ""
   }
 },
 {
   "model": "tasks.task",
-  "pk": 19,
+  "pk": 33,
   "fields": {
-    "title": "Ревью тестового покрытия",
-    "description": "Проверить процент покрытия кода.",
+    "title": "Р РµРІСЊСЋ С‚РµСЃС‚РѕРІРѕРіРѕ РїРѕРєСЂС‹С‚РёСЏ",
+    "description": "РџСЂРѕРІРµСЂРёС‚СЊ РїСЂРѕС†РµРЅС‚ РїРѕРєСЂС‹С‚РёСЏ РєРѕРґР°.",
     "status": "done",
     "priority": "low",
     "author": 3,
     "assignee": 5,
-    "project": 6,
-    "deadline": "2026-09-02",
+    "project": 10,
+    "deadline": "2026-09-10",
     "attachment": ""
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 6,
+  "pk": 18,
   "fields": {
-    "task": 6,
+    "task": 20,
     "author": 3,
-    "body": "Нужно уточнить требования у заказчика.",
-    "created_at": "2026-10-02T14:09:22.913Z"
+    "body": "РџСЂРёСЃС‚СѓРїРёР» Рє СЂР°Р±РѕС‚Рµ, РґР°Рј Р·РЅР°С‚СЊ РїРѕ С…РѕРґСѓ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 7,
+  "pk": 19,
   "fields": {
-    "task": 6,
-    "author": 3,
-    "body": "Нужно уточнить требования у заказчика.",
-    "created_at": "2026-10-02T14:09:22.914Z"
-  }
-},
-{
-  "model": "tasks.comment",
-  "pk": 8,
-  "fields": {
-    "task": 7,
+    "task": 20,
     "author": 6,
-    "body": "Готово, можно проверять.",
-    "created_at": "2026-10-02T14:09:22.914Z"
+    "body": "РќСѓР¶РЅРѕ СѓС‚РѕС‡РЅРёС‚СЊ С‚СЂРµР±РѕРІР°РЅРёСЏ Сѓ Р·Р°РєР°Р·С‡РёРєР°.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 9,
+  "pk": 20,
   "fields": {
-    "task": 7,
-    "author": 4,
-    "body": "Готово, можно проверять.",
-    "created_at": "2026-10-02T14:09:22.914Z"
+    "task": 21,
+    "author": 5,
+    "body": "РќСѓР¶РЅРѕ СѓС‚РѕС‡РЅРёС‚СЊ С‚СЂРµР±РѕРІР°РЅРёСЏ Сѓ Р·Р°РєР°Р·С‡РёРєР°.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 10,
+  "pk": 21,
   "fields": {
-    "task": 8,
-    "author": 4,
-    "body": "Возникла небольшая задержка, перенесу на пару дней.",
-    "created_at": "2026-10-02T14:09:22.915Z"
-  }
-},
-{
-  "model": "tasks.comment",
-  "pk": 11,
-  "fields": {
-    "task": 9,
+    "task": 21,
     "author": 6,
-    "body": "Приступил к работе, дам знать по ходу.",
-    "created_at": "2026-10-02T14:09:22.915Z"
+    "body": "РџСЂРёСЃС‚СѓРїРёР» Рє СЂР°Р±РѕС‚Рµ, РґР°Рј Р·РЅР°С‚СЊ РїРѕ С…РѕРґСѓ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 12,
+  "pk": 22,
   "fields": {
-    "task": 9,
+    "task": 22,
     "author": 5,
-    "body": "Нужно уточнить требования у заказчика.",
-    "created_at": "2026-10-02T14:09:22.915Z"
+    "body": "РџСЂРёСЃС‚СѓРїРёР» Рє СЂР°Р±РѕС‚Рµ, РґР°Рј Р·РЅР°С‚СЊ РїРѕ С…РѕРґСѓ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 13,
+  "pk": 23,
   "fields": {
-    "task": 10,
-    "author": 5,
-    "body": "Возникла небольшая задержка, перенесу на пару дней.",
-    "created_at": "2026-10-02T14:09:22.916Z"
-  }
-},
-{
-  "model": "tasks.comment",
-  "pk": 14,
-  "fields": {
-    "task": 10,
-    "author": 5,
-    "body": "Нужно уточнить требования у заказчика.",
-    "created_at": "2026-10-02T14:09:22.916Z"
-  }
-},
-{
-  "model": "tasks.comment",
-  "pk": 15,
-  "fields": {
-    "task": 11,
-    "author": 2,
-    "body": "Нужно уточнить требования у заказчика.",
-    "created_at": "2026-10-02T14:09:22.916Z"
-  }
-},
-{
-  "model": "tasks.comment",
-  "pk": 16,
-  "fields": {
-    "task": 12,
+    "task": 23,
     "author": 3,
-    "body": "Приступил к работе, дам знать по ходу.",
-    "created_at": "2026-10-02T14:09:22.916Z"
+    "body": "Р“РѕС‚РѕРІРѕ, РјРѕР¶РЅРѕ РїСЂРѕРІРµСЂСЏС‚СЊ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
   }
 },
 {
   "model": "tasks.comment",
-  "pk": 17,
+  "pk": 24,
   "fields": {
-    "task": 13,
+    "task": 23,
+    "author": 6,
+    "body": "Р“РѕС‚РѕРІРѕ, РјРѕР¶РЅРѕ РїСЂРѕРІРµСЂСЏС‚СЊ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
+  }
+},
+{
+  "model": "tasks.comment",
+  "pk": 25,
+  "fields": {
+    "task": 24,
+    "author": 3,
+    "body": "РџСЂРёСЃС‚СѓРїРёР» Рє СЂР°Р±РѕС‚Рµ, РґР°Рј Р·РЅР°С‚СЊ РїРѕ С…РѕРґСѓ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
+  }
+},
+{
+  "model": "tasks.comment",
+  "pk": 26,
+  "fields": {
+    "task": 25,
+    "author": 4,
+    "body": "РџСЂРёСЃС‚СѓРїРёР» Рє СЂР°Р±РѕС‚Рµ, РґР°Рј Р·РЅР°С‚СЊ РїРѕ С…РѕРґСѓ.",
+    "created_at": "2026-10-10T09:21:54.543Z"
+  }
+},
+{
+  "model": "tasks.comment",
+  "pk": 27,
+  "fields": {
+    "task": 26,
+    "author": 3,
+    "body": "РќСѓР¶РЅРѕ СѓС‚РѕС‡РЅРёС‚СЊ С‚СЂРµР±РѕРІР°РЅРёСЏ Сѓ Р·Р°РєР°Р·С‡РёРєР°.",
+    "created_at": "2026-10-10T09:21:54.544Z"
+  }
+},
+{
+  "model": "tasks.comment",
+  "pk": 28,
+  "fields": {
+    "task": 26,
     "author": 2,
-    "body": "Готово, можно проверять.",
-    "created_at": "2026-10-02T14:09:22.917Z"
+    "body": "Р’РѕР·РЅРёРєР»Р° РЅРµР±РѕР»СЊС€Р°СЏ Р·Р°РґРµСЂР¶РєР°, РїРµСЂРµРЅРµСЃСѓ РЅР° РїР°СЂСѓ РґРЅРµР№.",
+    "created_at": "2026-10-10T09:21:54.544Z"
+  }
+},
+{
+  "model": "tasks.comment",
+  "pk": 29,
+  "fields": {
+    "task": 27,
+    "author": 3,
+    "body": "РќСѓР¶РЅРѕ СѓС‚РѕС‡РЅРёС‚СЊ С‚СЂРµР±РѕРІР°РЅРёСЏ Сѓ Р·Р°РєР°Р·С‡РёРєР°.",
+    "created_at": "2026-10-10T09:21:54.544Z"
   }
 }
 ]
