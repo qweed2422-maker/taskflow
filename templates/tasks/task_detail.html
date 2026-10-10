@@ -20,10 +20,10 @@
     <dd class="col-sm-9">{{ task.project.title }}</dd>
 
     <dt class="col-sm-3">Статус</dt>
-    <dd class="col-sm-9">{{ task.get_status_display }}</dd>
+    <dd class="col-sm-9"><span class="tf-badge tf-status-{{ task.status }}">{{ task.get_status_display }}</span></dd>
 
     <dt class="col-sm-3">Приоритет</dt>
-    <dd class="col-sm-9">{{ task.get_priority_display }}</dd>
+    <dd class="col-sm-9"><span class="tf-badge tf-priority-{{ task.priority }}">{{ task.get_priority_display }}</span></dd>
 
     <dt class="col-sm-3">Автор</dt>
     <dd class="col-sm-9">{{ task.author.username }}</dd>

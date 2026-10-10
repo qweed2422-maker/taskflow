@@ -77,8 +77,8 @@
             <tr>
               <td><a href="{% url 'tasks:detail' task.pk %}">{{ task.title }}</a></td>
               <td>{{ task.project.title }}</td>
-              <td>{{ task.get_status_display }}</td>
-              <td>{{ task.get_priority_display }}</td>
+              <td><span class="tf-badge tf-status-{{ task.status }}">{{ task.get_status_display }}</span></td>
+              <td><span class="tf-badge tf-priority-{{ task.priority }}">{{ task.get_priority_display }}</span></td>
               <td>{{ task.author.username }}</td>
               <td>{{ task.assignee.username|default:"—" }}</td>
               <td>{{ task.deadline|default:"—" }}</td>

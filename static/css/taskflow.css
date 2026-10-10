@@ -1,0 +1,332 @@
+/*
+ * TaskFlow: оформление поверх Bootstrap 5.3.
+ * Основные цвета задаются в блоке :root, меняйте их там.
+ */
+
+:root {
+  --tf-primary: #4f46e5;
+  --tf-primary-dark: #4338ca;
+  --tf-bg: #f4f6fb;
+  --tf-surface: #ffffff;
+  --tf-border: #e5e7eb;
+  --tf-text: #1f2937;
+  --tf-muted: #6b7280;
+
+  /* Переопределяем переменные Bootstrap, чтобы primary стал индиго */
+  --bs-primary: #4f46e5;
+  --bs-primary-rgb: 79, 70, 229;
+  --bs-link-color-rgb: 79, 70, 229;
+  --bs-link-hover-color-rgb: 67, 56, 202;
+  --bs-body-color: #1f2937;
+  --bs-body-bg: #f4f6fb;
+  --bs-body-font-family: "Segoe UI", system-ui, -apple-system, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: var(--tf-bg);
+  color: var(--tf-text);
+}
+
+/* ---------- Шапка ---------- */
+
+.tf-navbar {
+  background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
+  box-shadow: 0 2px 8px rgba(67, 56, 202, 0.25);
+  padding: 0.6rem 0;
+}
+
+.tf-brand {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+}
+
+.tf-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  margin-right: 0.25rem;
+}
+
+.tf-navbar .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tf-navbar .nav-link.active {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tf-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.9rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.tf-role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Карточка с содержимым страницы ---------- */
+
+.tf-surface {
+  background: var(--tf-surface);
+  border: 1px solid var(--tf-border);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(17, 24, 39, 0.06),
+    0 8px 24px rgba(17, 24, 39, 0.04);
+}
+
+@media (max-width: 575.98px) {
+  .tf-surface {
+    padding: 1.1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+.tf-surface h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.tf-surface h4,
+.tf-surface h5 {
+  font-weight: 600;
+}
+
+.tf-surface dt {
+  color: var(--tf-muted);
+  font-weight: 500;
+}
+
+.tf-surface hr {
+  opacity: 0.1;
+}
+
+.tf-footer {
+  color: var(--tf-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Кнопки ---------- */
+
+.btn {
+  border-radius: 0.6rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  --bs-btn-bg: #4f46e5;
+  --bs-btn-border-color: #4f46e5;
+  --bs-btn-hover-bg: #4338ca;
+  --bs-btn-hover-border-color: #4338ca;
+  --bs-btn-active-bg: #3730a3;
+  --bs-btn-active-border-color: #3730a3;
+  --bs-btn-disabled-bg: #4f46e5;
+  --bs-btn-disabled-border-color: #4f46e5;
+  --bs-btn-focus-shadow-rgb: 99, 102, 241;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #4f46e5;
+  --bs-btn-border-color: #4f46e5;
+  --bs-btn-hover-bg: #4f46e5;
+  --bs-btn-hover-border-color: #4f46e5;
+  --bs-btn-active-bg: #4338ca;
+  --bs-btn-active-border-color: #4338ca;
+  --bs-btn-focus-shadow-rgb: 99, 102, 241;
+}
+
+/* ---------- Таблицы ---------- */
+
+.tf-surface .table {
+  --bs-table-hover-bg: #f5f3ff;
+  margin-bottom: 0;
+}
+
+.tf-surface .table thead th {
+  background: #f9fafb;
+  border-bottom: 1px solid var(--tf-border);
+  color: var(--tf-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tf-surface .table td {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-color: #f0f1f4;
+}
+
+.tf-surface .table td a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.tf-surface .table td a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Карточки статистики (дашборд) ---------- */
+
+.tf-surface .card {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.12);
+}
+
+/* ---------- Список проектов ---------- */
+
+.tf-surface .list-group {
+  gap: 0.6rem;
+}
+
+.tf-surface .list-group .list-group-item {
+  border: 1px solid var(--tf-border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+}
+
+.tf-surface .list-group .list-group-item + .list-group-item {
+  border-top-width: 1px;
+}
+
+.tf-surface .list-group .list-group-item-action:hover {
+  transform: translateY(-1px);
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+}
+
+/* ---------- Формы ---------- */
+
+.tf-surface .form-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tf-surface input[type="text"],
+.tf-surface input[type="password"],
+.tf-surface input[type="email"],
+.tf-surface input[type="number"],
+.tf-surface input[type="date"],
+.tf-surface input[type="file"],
+.tf-surface textarea,
+.tf-surface select:not(.form-select) {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--tf-text);
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.6rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tf-surface input[type="file"] {
+  padding: 0.45rem;
+  background: #f8fafc;
+  border-style: dashed;
+}
+
+.tf-surface input[type="file"]::file-selector-button {
+  margin-right: 0.8rem;
+  padding: 0.35rem 0.8rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tf-surface input:focus,
+.tf-surface textarea:focus,
+.tf-surface select:focus {
+  outline: 0;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.2);
+}
+
+.tf-surface .errorlist {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+/* ---------- Пагинация и сообщения ---------- */
+
+.pagination {
+  --bs-pagination-color: #4f46e5;
+  --bs-pagination-hover-color: #4338ca;
+  --bs-pagination-focus-color: #4338ca;
+  --bs-pagination-active-bg: #4f46e5;
+  --bs-pagination-active-border-color: #4f46e5;
+  --bs-pagination-border-radius: 0.5rem;
+}
+
+.alert {
+  border: 0;
+  border-radius: 0.75rem;
+}
+
+/* ---------- Бейджи статусов и приоритетов ---------- */
+
+.tf-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.tf-status-new {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.tf-status-in_progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.tf-status-done {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.tf-priority-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.tf-priority-medium {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.tf-priority-low {
+  background: #e5e7eb;
+  color: #374151;
+}
