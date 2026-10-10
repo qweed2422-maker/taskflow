@@ -19,9 +19,10 @@
       </div>
     {% endfor %}
 
-    {% if object and object.attachment %}
+        {% if object and object.attachment %}
       <p class="text-muted">
-        Текущий файл: <a href="{{ object.attachment.url }}" target="_blank">{{ object.attachment.name }}</a>
+        Текущий файл: <a href="{% url 'tasks:attachment' object.pk %}">{{ object.attachment_filename }}</a>
+        (чтобы заменить, выберите новый файл)
       </p>
     {% endif %}
 

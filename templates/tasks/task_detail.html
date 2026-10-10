@@ -34,11 +34,10 @@
     <dt class="col-sm-3">Дедлайн</dt>
     <dd class="col-sm-9">{{ task.deadline|default:"не задан" }}</dd>
 
-    {% if task.attachment %}
+        {% if task.attachment %}
       <dt class="col-sm-3">Файл</dt>
-      <dd class="col-sm-9"><a href="{{ task.attachment.url }}" target="_blank">{{ task.attachment.name }}</a></dd>
+      <dd class="col-sm-9"><a href="{% url 'tasks:attachment' task.pk %}">{{ task.attachment_filename }}</a></dd>
     {% endif %}
-  </dl>
 
   <p>{{ task.description|linebreaks }}</p>
 

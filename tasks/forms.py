@@ -15,6 +15,7 @@ class BaseTaskForm(forms.ModelForm):
     class Meta:
         widgets = {
             "deadline": forms.DateInput(attrs={"type": "date"}),
+            "attachment": forms.FileInput(),
         }
 
 

@@ -10,12 +10,12 @@ class ProjectAccessTests(RolesDataMixin, TestCase):
         url = reverse("projects:list")
         self.assertRedirects(self.client.get(url), f"{reverse('login')}?next={url}")
 
-    def test_anonymous_cannot_use_manager_only_pages(self):
-        # ManagerRequiredMixin использует raise_exception=True, поэтому и аноним получает 403
+    def test_anonymous_is_redirected_to_login_on_manager_only_pages(self):
         for name, args in [("projects:create", ()), ("projects:edit", (self.project.pk,)),
                            ("projects:delete", (self.project.pk,))]:
             with self.subTest(url=name):
-                self.assertEqual(self.client.get(reverse(name, args=args)).status_code, 403)
+                url = reverse(name, args=args)
+                self.assertRedirects(self.client.get(url), f"{reverse('login')}?next={url}")
 
     def test_everyone_logged_in_sees_list_and_detail(self):
         for user in (self.manager, self.alice, self.carol):

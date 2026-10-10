@@ -16,6 +16,8 @@ from django.views.generic import View
 
 from .forms import ManagerTaskForm, EmployeeCreateTaskForm, EmployeeEditTaskForm, CommentForm
 
+from django.http import FileResponse, Http404
+
 class VisibleTasksMixin:
     """
     Ограничивает queryset по правам пользователя — см. Task.objects.visible_to().
@@ -159,3 +161,21 @@ class CommentCreateView(LoginRequiredMixin, VisibleTasksMixin, View):
         else:
             messages.error(request, "Не удалось добавить комментарий — проверьте текст.")
         return redirect("tasks:detail", pk=task.pk)
+
+class TaskAttachmentView(LoginRequiredMixin, VisibleTasksMixin, View):
+    """
+    Скачивание вложения задачи. Файл отдаётся только если сама задача
+    видна пользователю (та же проверка, что на detail/edit), иначе 404.
+    as_attachment=True заставляет браузер скачивать файл, а не открывать
+    его на странице (защита от выполнения загруженного HTML/SVG).
+    """
+
+    def get(self, request, pk):
+        task = get_object_or_404(self.get_base_queryset(), pk=pk)
+        if not task.attachment:
+            raise Http404("У задачи нет прикреплённого файла.")
+        try:
+            file = task.attachment.open("rb")
+        except FileNotFoundError:
+            raise Http404("Файл не найден на сервере.")
+        return FileResponse(file, as_attachment=True, filename=task.attachment_filename)

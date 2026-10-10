@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+import os
 
 from projects.models import Project
 
@@ -74,6 +75,9 @@ class Task(models.Model):
         null=True,
         blank=True,
     )
+    @property
+    def attachment_filename(self):
+        return os.path.basename(self.attachment.name) if self.attachment else ""
 
     class Meta:
         verbose_name = "Задача"

@@ -136,3 +136,6 @@ LOGOUT_REDIRECT_URL = 'login'
 # Медиафайлы (загрузки задач)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LANGUAGE_CODE = 'ru'
+TIME_ZONE = 'Asia/Oral'

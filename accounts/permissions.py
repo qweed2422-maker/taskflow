@@ -28,11 +28,8 @@ def is_employee(user) -> bool:
 class ManagerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     """
     Доступ к view только для Руководителя.
-    Сотруднику, попытавшемуся открыть такой view, возвращается 403 Forbidden
-    (а не редирект на логин, так как пользователь уже аутентифицирован).
+    Аноним перенаправляется на страницу входа, вошедший сотрудник получает 403.
     """
-
-    raise_exception = True
 
     def test_func(self):
         return is_manager(self.request.user)
