@@ -60,7 +60,7 @@ taskflow/                 # корень репозитория
 Требуется Python 3.10-3.12 и Git.
 
 ```bash
-git clone <адрес-вашего-репозитория>
+git clone https://github.com/qweed2422-maker/taskflow.git
 cd taskflow
 python -m venv .venv
 ```
