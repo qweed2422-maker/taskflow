@@ -4,6 +4,8 @@ import os
 
 from projects.models import Project
 
+from django.utils import timezone
+
 class TaskQuerySet(models.QuerySet):
     def visible_to(self, user):
         """
@@ -75,6 +77,14 @@ class Task(models.Model):
         null=True,
         blank=True,
     )
+    @property
+    def is_overdue(self):
+        """Дедлайн прошёл, а задача не завершена."""
+        return (
+            self.deadline is not None
+            and self.status != self.Status.DONE
+            and self.deadline < timezone.localdate()
+        )
     @property
     def attachment_filename(self):
         return os.path.basename(self.attachment.name) if self.attachment else ""

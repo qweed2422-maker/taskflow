@@ -2,13 +2,27 @@
 
 {% block title %}Задачи{% endblock %}
 
+{% block page_class %}tf-plain{% endblock %}
+
 {% block content %}
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="tf-page-head">
     <h1>Задачи</h1>
     <a href="{% url 'tasks:create' %}" class="btn btn-primary">+ Новая задача</a>
   </div>
 
-  <form method="get" class="row g-2 mb-4">
+  <div class="tf-chips">
+    <a class="tf-chip {% if not current_status %}active{% endif %}"
+       href="?q={{ current_q|urlencode }}&amp;assignee={{ current_assignee|urlencode }}&amp;project={{ current_project|urlencode }}">Все</a>
+    {% for value, label in status_choices %}
+      <a class="tf-chip tf-st-{{ value }} {% if current_status == value %}active{% endif %}"
+         href="?q={{ current_q|urlencode }}&amp;assignee={{ current_assignee|urlencode }}&amp;project={{ current_project|urlencode }}&amp;status={{ value }}">
+        <i class="tf-dot"></i>{{ label }}
+      </a>
+    {% endfor %}
+  </div>
+
+  <form method="get" class="tf-filters row g-2">
+    <input type="hidden" name="status" value="{{ current_status }}">
     <div class="col-md-4">
       <input
           type="text"
@@ -17,17 +31,7 @@
           placeholder="Поиск по названию"
           value="{{ current_q }}">
     </div>
-    <div class="col-md-2">
-      <select name="status" class="form-select">
-        <option value="">Все статусы</option>
-        {% for value, label in status_choices %}
-          <option value="{{ value }}" {% if current_status == value %}selected{% endif %}>
-            {{ label }}
-          </option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <select name="assignee" class="form-select">
         <option value="">Все исполнители</option>
         {% for a in assignees %}
@@ -37,7 +41,7 @@
         {% endfor %}
       </select>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <select name="project" class="form-select">
         <option value="">Все проекты</option>
         {% for p in projects %}
@@ -53,43 +57,127 @@
   </form>
 
   {% if current_q or current_status or current_assignee or current_project %}
-    <p>
+    <p class="mb-3">
       <a href="{% url 'tasks:list' %}" class="btn btn-sm btn-link ps-0">Сбросить фильтры</a>
     </p>
   {% endif %}
 
   {% if tasks %}
-    <div class="table-responsive">
-      <table class="table table-hover align-middle">
-        <thead>
-          <tr>
-            <th>Название</th>
-            <th>Проект</th>
-            <th>Статус</th>
-            <th>Приоритет</th>
-            <th>Автор</th>
-            <th>Исполнитель</th>
-            <th>Дедлайн</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for task in tasks %}
-            <tr>
-              <td><a href="{% url 'tasks:detail' task.pk %}">{{ task.title }}</a></td>
-              <td>{{ task.project.title }}</td>
-              <td><span class="tf-badge tf-status-{{ task.status }}">{{ task.get_status_display }}</span></td>
-              <td><span class="tf-badge tf-priority-{{ task.priority }}">{{ task.get_priority_display }}</span></td>
-              <td>{{ task.author.username }}</td>
-              <td>{{ task.assignee.username|default:"—" }}</td>
-              <td>{{ task.deadline|default:"—" }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="tf-grid">
+      {% for task in tasks %}
+        <article class="tf-task tf-st-{{ task.status }}"
+                 role="button" tabindex="0"
+                 data-bs-toggle="modal" data-bs-target="#task-modal-{{ task.pk }}">
+          <div class="tf-task-top">
+            <span class="tf-pill">{{ task.get_status_display }}</span>
+            <span class="tf-prio tf-prio-{{ task.priority }}" title="Приоритет: {{ task.get_priority_display }}">
+              <span class="tf-prio-bars"><i></i><i></i><i></i></span>
+              {{ task.get_priority_display }}
+            </span>
+          </div>
+          <h3 class="tf-task-title">{{ task.title }}</h3>
+          <div class="tf-task-project">{{ task.project.title }}</div>
+          {% if task.description %}
+            <p class="tf-task-desc">{{ task.description|truncatechars:160 }}</p>
+          {% endif %}
+          <div class="tf-task-foot">
+            <span class="tf-person">
+              {% if task.assignee %}
+                <span class="tf-avatar">{{ task.assignee.username|slice:":1"|upper }}</span>{{ task.assignee.username }}
+              {% else %}
+                <span class="tf-avatar tf-avatar-empty">?</span>Не назначен
+              {% endif %}
+            </span>
+            {% if task.deadline %}
+              <span class="tf-deadline{% if task.is_overdue %} tf-deadline-late{% endif %}">
+                до {{ task.deadline|date:"d.m.Y" }}
+              </span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
     </div>
+
+    {% for task in tasks %}
+      <div class="modal fade tf-modal tf-st-{{ task.status }}"
+           id="task-modal-{{ task.pk }}" tabindex="-1"
+           aria-labelledby="task-modal-title-{{ task.pk }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div>
+                <span class="tf-pill">{{ task.get_status_display }}</span>
+                <h2 class="modal-title" id="task-modal-title-{{ task.pk }}">{{ task.title }}</h2>
+                <div class="tf-task-project">{{ task.project.title }}</div>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+              <dl class="tf-facts">
+                <div class="tf-fact">
+                  <dt>Приоритет</dt>
+                  <dd>
+                    <span class="tf-prio tf-prio-{{ task.priority }}">
+                      <span class="tf-prio-bars"><i></i><i></i><i></i></span>
+                      {{ task.get_priority_display }}
+                    </span>
+                  </dd>
+                </div>
+                <div class="tf-fact">
+                  <dt>Дедлайн</dt>
+                  <dd class="{% if task.is_overdue %}tf-deadline-late{% endif %}">
+                    {% if task.deadline %}{{ task.deadline|date:"d.m.Y" }}{% else %}не задан{% endif %}
+                  </dd>
+                </div>
+                <div class="tf-fact">
+                  <dt>Автор</dt>
+                  <dd>{{ task.author.username }}</dd>
+                </div>
+                <div class="tf-fact">
+                  <dt>Исполнитель</dt>
+                  <dd>{{ task.assignee.username|default:"не назначен" }}</dd>
+                </div>
+                {% if task.attachment %}
+                  <div class="tf-fact tf-fact-wide">
+                    <dt>Файл</dt>
+                    <dd><a href="{% url 'tasks:attachment' task.pk %}">{{ task.attachment_filename }}</a></dd>
+                  </div>
+                {% endif %}
+              </dl>
+              {% if task.description %}
+                <div class="tf-modal-desc">{{ task.description|linebreaksbr }}</div>
+              {% endif %}
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-primary" href="{% url 'tasks:detail' task.pk %}">Открыть полностью</a>
+              {% if is_manager or task.author == user or task.assignee == user %}
+                <a class="btn btn-outline-secondary" href="{% url 'tasks:edit' task.pk %}">Редактировать</a>
+              {% endif %}
+              {% if is_manager %}
+                <a class="btn btn-outline-danger" href="{% url 'tasks:delete' task.pk %}">Удалить</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
 
     {% include "includes/pagination.html" %}
   {% else %}
-    <p class="text-muted">Ничего не найдено по заданным условиям.</p>
+    <div class="tf-empty">Ничего не найдено по заданным условиям.</div>
   {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Карточки открываются и с клавиатуры (Enter / пробел)
+    document.querySelectorAll('.tf-task[role="button"]').forEach(function (card) {
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+  </script>
 {% endblock %}

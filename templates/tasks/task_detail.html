@@ -3,9 +3,13 @@
 {% block title %}{{ task.title }}{% endblock %}
 
 {% block content %}
-  <div class="d-flex justify-content-between align-items-start mb-3">
-    <h1>{{ task.title }}</h1>
-    <div>
+  <div class="tf-page-head align-items-start">
+    <div class="tf-st-{{ task.status }}">
+      <span class="tf-pill">{{ task.get_status_display }}</span>
+      <h1 class="mt-2 mb-1">{{ task.title }}</h1>
+      <div class="tf-task-project">{{ task.project.title }}</div>
+    </div>
+    <div class="d-flex gap-2">
       {% if is_manager or task.author == user or task.assignee == user %}
         <a href="{% url 'tasks:edit' task.pk %}" class="btn btn-outline-secondary btn-sm">Редактировать</a>
       {% endif %}
@@ -15,44 +19,63 @@
     </div>
   </div>
 
-  <dl class="row">
-    <dt class="col-sm-3">Проект</dt>
-    <dd class="col-sm-9">{{ task.project.title }}</dd>
+  <div class="tf-steps">
+    <span class="tf-step tf-st-new {% if task.status == 'new' %}current{% else %}passed{% endif %}">Новая</span>
+    <span class="tf-step tf-st-in_progress {% if task.status == 'in_progress' %}current{% elif task.status == 'done' %}passed{% endif %}">В работе</span>
+    <span class="tf-step tf-st-done {% if task.status == 'done' %}current{% endif %}">Готово</span>
+  </div>
 
-    <dt class="col-sm-3">Статус</dt>
-    <dd class="col-sm-9"><span class="tf-badge tf-status-{{ task.status }}">{{ task.get_status_display }}</span></dd>
-
-    <dt class="col-sm-3">Приоритет</dt>
-    <dd class="col-sm-9"><span class="tf-badge tf-priority-{{ task.priority }}">{{ task.get_priority_display }}</span></dd>
-
-    <dt class="col-sm-3">Автор</dt>
-    <dd class="col-sm-9">{{ task.author.username }}</dd>
-
-    <dt class="col-sm-3">Исполнитель</dt>
-    <dd class="col-sm-9">{{ task.assignee.username|default:"не назначен" }}</dd>
-
-    <dt class="col-sm-3">Дедлайн</dt>
-    <dd class="col-sm-9">{{ task.deadline|default:"не задан" }}</dd>
-
-        {% if task.attachment %}
-      <dt class="col-sm-3">Файл</dt>
-      <dd class="col-sm-9"><a href="{% url 'tasks:attachment' task.pk %}">{{ task.attachment_filename }}</a></dd>
+  <dl class="tf-facts tf-facts-3">
+    <div class="tf-fact">
+      <dt>Приоритет</dt>
+      <dd>
+        <span class="tf-prio tf-prio-{{ task.priority }}">
+          <span class="tf-prio-bars"><i></i><i></i><i></i></span>
+          {{ task.get_priority_display }}
+        </span>
+      </dd>
+    </div>
+    <div class="tf-fact">
+      <dt>Дедлайн</dt>
+      <dd class="{% if task.is_overdue %}tf-deadline-late{% endif %}">
+        {% if task.deadline %}{{ task.deadline|date:"d.m.Y" }}{% else %}не задан{% endif %}
+      </dd>
+    </div>
+    <div class="tf-fact">
+      <dt>Автор</dt>
+      <dd>{{ task.author.username }}</dd>
+    </div>
+    <div class="tf-fact">
+      <dt>Исполнитель</dt>
+      <dd>{{ task.assignee.username|default:"не назначен" }}</dd>
+    </div>
+    {% if task.attachment %}
+      <div class="tf-fact">
+        <dt>Файл</dt>
+        <dd><a href="{% url 'tasks:attachment' task.pk %}">{{ task.attachment_filename }}</a></dd>
+      </div>
     {% endif %}
+  </dl>
 
-  <p>{{ task.description|linebreaks }}</p>
+  {% if task.description %}
+    <div class="tf-modal-desc">{{ task.description|linebreaks }}</div>
+  {% endif %}
 
-  <a href="{% url 'tasks:list' %}" class="btn btn-link ps-0">&larr; Ко всем задачам</a>
+  <a href="{% url 'tasks:list' %}" class="btn btn-link ps-0 mt-3">&larr; Ко всем задачам</a>
 
-    <hr class="my-4">
-  <h4>Комментарии</h4>
+  <hr class="my-4">
+  <h4 class="mb-3">Комментарии</h4>
 
   {% for comment in task.comments.all %}
-    <div class="mb-3 pb-2 border-bottom">
-      <div class="d-flex justify-content-between">
-        <strong>{{ comment.author.username }}</strong>
-        <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+    <div class="tf-comment">
+      <span class="tf-avatar">{{ comment.author.username|slice:":1"|upper }}</span>
+      <div class="tf-comment-body">
+        <div class="tf-comment-meta">
+          <strong>{{ comment.author.username }}</strong>
+          <span>{{ comment.created_at|date:"d.m.Y H:i" }}</span>
+        </div>
+        <div>{{ comment.body|linebreaks }}</div>
       </div>
-      <div>{{ comment.body|linebreaks }}</div>
     </div>
   {% empty %}
     <p class="text-muted">Комментариев пока нет.</p>

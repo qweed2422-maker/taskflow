@@ -14,6 +14,11 @@ def dashboard_home(request):
         for value, label in Task.Status.choices
     ]
 
+    status_stats = [
+        {"value": value, "label": label, "count": visible_tasks.filter(status=value).count()}
+        for value, label in Task.Status.choices
+    ]
+
     priority_stats = [
         {"label": label, "count": visible_tasks.filter(priority=value).count()}
         for value, label in Task.Priority.choices

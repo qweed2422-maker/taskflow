@@ -2,60 +2,56 @@
 
 {% block title %}Дашборд{% endblock %}
 
+{% block page_class %}tf-plain{% endblock %}
+
 {% block content %}
-  <h1 class="mb-4">Дашборд</h1>
-  <p>Добро пожаловать, {{ user.username }}!
-    {% if is_manager %}Ниже — статистика по всем задачам команды.
-    {% else %}Ниже — статистика по вашим задачам.{% endif %}
-  </p>
-
-  <div class="row g-3 mb-4">
-    <div class="col-md-3">
-      <div class="card text-bg-primary h-100">
-        <div class="card-body">
-          <h6 class="card-title">Всего задач</h6>
-          <p class="display-6 mb-0">{{ total_tasks }}</p>
-        </div>
+  <div class="tf-page-head">
+    <div>
+      <h1>Дашборд</h1>
+      <div class="tf-sub">
+        Здравствуйте, {{ user.username }}.
+        {% if is_manager %}Статистика по всем задачам команды.{% else %}Статистика по вашим задачам.{% endif %}
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="card {% if overdue_count > 0 %}text-bg-danger{% else %}text-bg-success{% endif %} h-100">
-        <div class="card-body">
-          <h6 class="card-title">Просрочено</h6>
-          <p class="display-6 mb-0">{{ overdue_count }}</p>
-        </div>
+    <a href="{% url 'tasks:list' %}" class="btn btn-primary">К задачам</a>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-sm-6">
+      <div class="tf-tile tf-tile-ink">
+        <div class="tf-tile-num">{{ total_tasks }}</div>
+        <div class="tf-tile-label">Всего задач</div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="tf-tile {% if overdue_count > 0 %}tf-tile-alert{% else %}tf-tile-ok{% endif %}">
+        <div class="tf-tile-num">{{ overdue_count }}</div>
+        <div class="tf-tile-label">Просрочено</div>
       </div>
     </div>
   </div>
 
-  <div class="row g-4">
-    <div class="col-md-6">
-      <h5>По статусам</h5>
-      <table class="table">
-        <tbody>
-          {% for row in status_stats %}
-            <tr>
-              <td>{{ row.label }}</td>
-              <td class="text-end"><strong>{{ row.count }}</strong></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-6">
-      <h5>По приоритетам</h5>
-      <table class="table">
-        <tbody>
-          {% for row in priority_stats %}
-            <tr>
-              <td>{{ row.label }}</td>
-              <td class="text-end"><strong>{{ row.count }}</strong></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+  <h2 class="tf-section">По статусам</h2>
+  <div class="row g-3">
+    {% for row in status_stats %}
+      <div class="col-sm-4">
+        <div class="tf-tile tf-tile-state tf-st-{{ row.value }}">
+          <div class="tf-tile-num">{{ row.count }}</div>
+          <div class="tf-tile-label">{{ row.label }}</div>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 
-  <a href="{% url 'tasks:list' %}" class="btn btn-outline-primary mt-4">Перейти к списку задач</a>
+  <h2 class="tf-section">По приоритетам</h2>
+  <div class="row g-3">
+    {% for row in priority_stats %}
+      <div class="col-sm-4">
+        <div class="tf-tile">
+          <div class="tf-tile-num">{{ row.count }}</div>
+          <div class="tf-tile-label">{{ row.label }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
